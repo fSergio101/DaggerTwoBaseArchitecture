@@ -1,6 +1,6 @@
 # DaggerTwoBaseArchitecture
 
-This dagger 2 implementation is giving support to some blog post that I've posted this week talking about my experience with Dagger 2. This implementation and the blog post try to be an approach that keeps the best practices I've learnt during the days I've spent playing with Dagger 2. Of course is not the best and nor the cleaner, but at least I feel more confortable with this implementation than with any other I've found googling. Anyway I really encourage readers to improve this approach, c'mon fork it, try something interesting and don't fotget... SAHRE IT!!
+This dagger 2 implementation is giving support to some blog post that I've posted this week talking about my experience with Dagger 2. This implementation and the blog post try to be an approach that keeps the best practices I've learnt during the days I've spent playing with Dagger 2. Of course is not the best and nor the cleaner, but at least I feel more confortable with this implementation than with any other I've found googling. Anyway I really encourage readers to improve this approach, c'mon fork it, try something interesting and don't fotget... SHARE IT!!
 
 Don't laught about UI ... "What is essential is invisible to the eye" ... XD
 

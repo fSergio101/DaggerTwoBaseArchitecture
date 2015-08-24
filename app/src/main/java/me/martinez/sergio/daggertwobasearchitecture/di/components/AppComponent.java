@@ -19,19 +19,15 @@ package me.martinez.sergio.daggertwobasearchitecture.di.components;
 import dagger.Component;
 import java.util.List;
 import javax.inject.Singleton;
-import me.martinez.sergio.daggertwobasearchitecture.test.A;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.App;
 import me.martinez.sergio.daggertwobasearchitecture.di.modules.AppModule;
-import me.martinez.sergio.daggertwobasearchitecture.utils.Log4Me;
 
 /**
  * Created by Sergio Martinez Rodriguez
  * Date 15/7/15.
  */
 @Singleton @Component(modules = AppModule.class)
-public interface AppComponent {
+public interface AppComponent extends IncludedProviderInterface{
   void inject(App app);
-  A provideA();
   List<String> provideDiInjectionHistory();
-  Log4Me provideLog4Me();
 }

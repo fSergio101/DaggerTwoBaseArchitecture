@@ -27,8 +27,10 @@ import android.widget.Button;
 import javax.inject.Inject;
 
 import me.martinez.sergio.daggertwobasearchitecture.R;
+import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.App;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseFragment;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseInjectionActivity;
+import me.martinez.sergio.daggertwobasearchitecture.diprovider.components.DaggerMainActivityComponent;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.MainFragment;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep.FirstFragment;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.secondstep.SecondFragment;
@@ -53,7 +55,15 @@ public class MainActivity extends BaseInjectionActivity implements View.OnClickL
         initButtons();
         initFragment();
         initOnClickListeners();
+        initDI();
         testDI();
+    }
+
+    private void initDI() {
+        DaggerMainActivityComponent
+                .builder().
+                appComponent(((App) getApplication()).getAppComponent())
+                .build().inject(this);
     }
 
     private void initButtons() {
@@ -119,7 +129,7 @@ public class MainActivity extends BaseInjectionActivity implements View.OnClickL
 
     //region Test DI stuff
     private void testDI() {
-
+        logger.log("Estoy en MainActivity con a:" + a + " y b:" + b);
     }
     //endregion
 

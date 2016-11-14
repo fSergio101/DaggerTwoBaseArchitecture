@@ -17,19 +17,21 @@
 package me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
 import me.martinez.sergio.daggertwobasearchitecture.R;
-import me.martinez.sergio.daggertwobasearchitecture.di.anotations.scopes.PerSection;
-import me.martinez.sergio.daggertwobasearchitecture.di.components.SectionComponentMain;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseFragment;
 import me.martinez.sergio.daggertwobasearchitecture.di.modules.FragmentModule;
-import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep.presentation.FirstFragmentPresenter;
-import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep.presentation.FirstFragmentView;
+import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep.presentation
+        .FirstFragmentPresenter;
+import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep.presentation
+        .FirstFragmentView;
 import me.martinez.sergio.daggertwobasearchitecture.test.A;
 import me.martinez.sergio.daggertwobasearchitecture.test.D;
 import me.martinez.sergio.daggertwobasearchitecture.test.E;
@@ -41,47 +43,47 @@ import me.martinez.sergio.daggertwobasearchitecture.test.SectionProperty;
  * Date 15/7/15.
  */
 public class FirstFragment extends BaseFragment<FirstFragmentComponent> implements
-    FirstFragmentView {
+        FirstFragmentView {
 
-  @Inject A a;
-  @Inject E e;
-  @Inject D d;
-  @Inject List<String> diInjectionHistory;
-  @Inject FirstFragmentPresenter firstFragmentPresenter;
-  @Inject SectionProperty sectionProperty;
-  @Inject NotScopedProperty notScopedProperty;
+    @Inject A a;
+    @Inject E e;
+    @Inject D d;
+    @Inject List<String> diInjectionHistory;
+    @Inject FirstFragmentPresenter firstFragmentPresenter;
+    @Inject SectionProperty sectionProperty;
+    @Inject NotScopedProperty notScopedProperty;
 
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_main, container, false);
-  }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_main, container, false);
+    }
 
-  @Override public void onStart() {
-    super.onStart();
-    testDI();
-  }
+    @Override
+    public void onStart() {
+        super.onStart();
+        testDI();
+    }
 
-  //region Test DI stuff
-  private void testDI() {
+    //region Test DI stuff
+    private void testDI() {
 
-    diInjectionHistory.add(FirstFragment.class.getName());
-    diInjectionHistory.add(firstFragmentPresenter.toString());
-    diInjectionHistory.add(notScopedProperty.toString());
-    diInjectionHistory.add(sectionProperty.toString());
-    diInjectionHistory.add(a.toString());
-    diInjectionHistory.add(e.toString());
-    diInjectionHistory.add(d.toString());
+        diInjectionHistory.add(FirstFragment.class.getName());
+        diInjectionHistory.add(firstFragmentPresenter.toString());
+        diInjectionHistory.add(notScopedProperty.toString());
+        diInjectionHistory.add(sectionProperty.toString());
+        diInjectionHistory.add(a.toString());
+        diInjectionHistory.add(e.toString());
+        diInjectionHistory.add(d.toString());
 
-  }
+    }
 
-  @Override protected void initDIComponent() {
-    fragmentComponent = (getParentComponent(SectionComponentMain.class)).plus(
-        new FragmentModule(this), new FirstFragmentModule(this));
-    fragmentComponent.injectFragment(this);
-  }
+    @Override
+    protected void initDIComponent() {
 
-  public interface Pluser{
-    FirstFragmentComponent plus(FragmentModule fragmentModule, FirstFragmentModule firstFragmentModule);
-  }
+    }
+
+    public interface Pluser {
+        FirstFragmentComponent plus(FragmentModule fragmentModule, FirstFragmentModule firstFragmentModule);
+    }
 
 }

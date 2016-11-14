@@ -18,23 +18,18 @@ package me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsect
 
 import dagger.Module;
 import dagger.Provides;
-import javax.inject.Singleton;
-import me.martinez.sergio.daggertwobasearchitecture.di.anotations.scopes.PerSection;
 import me.martinez.sergio.daggertwobasearchitecture.test.NotScopedProperty;
-import me.martinez.sergio.daggertwobasearchitecture.test.SectionProperty;
 
 /**
  * Created by Sergio Martinez Rodriguez
  * Date 16/7/15.
  */
 @Module
-public class TestSectionModule{
+public class TestSectionModule {
 
-  @PerSection @Provides public SectionProperty provideSectionProperty(){
-    return new SectionProperty();
-  }
+    @Provides
+    public NotScopedProperty provideNotScopedProperty() {
+        return new NotScopedProperty();
+    }
 
-  @Provides public NotScopedProperty provideNotScopedProperty(){
-    return new NotScopedProperty();
-  }
 }

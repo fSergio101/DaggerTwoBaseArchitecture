@@ -12,6 +12,7 @@ import me.martinez.sergio.daggertwobasearchitecture.utils.Log4MeImpl;
 public class AppModule {
 
     @Provides
+    @Singleton
     Log4Me provLog4Me(Log4MeImpl log4Me) {
         return log4Me;
     }

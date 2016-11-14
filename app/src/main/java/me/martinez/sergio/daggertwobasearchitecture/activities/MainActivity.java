@@ -24,14 +24,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import me.martinez.sergio.daggertwobasearchitecture.R;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseFragment;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseInjectionActivity;
-import me.martinez.sergio.daggertwobasearchitecture.di.modules.ActivityModule;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.MainFragment;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep.FirstFragment;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.secondstep.SecondFragment;
@@ -39,8 +36,7 @@ import me.martinez.sergio.daggertwobasearchitecture.test.A;
 import me.martinez.sergio.daggertwobasearchitecture.test.B;
 import me.martinez.sergio.daggertwobasearchitecture.utils.Log4Me;
 
-public class MainActivity extends BaseInjectionActivity<MainActivityComponent> implements
-        View.OnClickListener {
+public class MainActivity extends BaseInjectionActivity implements View.OnClickListener {
 
     private Button buttonClearFragments;
     private Button buttonAddFirstFragment;
@@ -49,9 +45,6 @@ public class MainActivity extends BaseInjectionActivity<MainActivityComponent> i
     @Inject A a;
     @Inject B b;
     @Inject Log4Me logger;
-    @Inject List<String> diInjectionHistory;
-
-    private Object sectionComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,24 +120,7 @@ public class MainActivity extends BaseInjectionActivity<MainActivityComponent> i
     //region Test DI stuff
     private void testDI() {
 
-        diInjectionHistory.add(MainActivity.class.getName());
-        diInjectionHistory.add(logger.toString());
-        diInjectionHistory.add(a.toString());
-        diInjectionHistory.add(b.toString());
-
     }
-    //endregion
-
-    //region dependency injection Methods
-
-    @Override
-    protected void initDI() {
-        activityComponent = DaggerMainActivityComponent.builder().appComponent(getAppComponent())
-                .activityModule(new ActivityModule(this))
-                .mainActivityModule(new MainActivityModule(this)).build();
-        activityComponent.injectActivity(this);
-    }
-
     //endregion
 
     @Override

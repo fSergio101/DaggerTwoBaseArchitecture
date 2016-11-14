@@ -17,58 +17,41 @@
 package me.martinez.sergio.daggertwobasearchitecture.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import java.util.List;
+
 import javax.inject.Inject;
+
 import me.martinez.sergio.daggertwobasearchitecture.R;
-import me.martinez.sergio.daggertwobasearchitecture.activities.MainActivityComponent;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseFragment;
-import me.martinez.sergio.daggertwobasearchitecture.di.modules.FragmentModule;
 import me.martinez.sergio.daggertwobasearchitecture.test.A;
 import me.martinez.sergio.daggertwobasearchitecture.test.B;
 import me.martinez.sergio.daggertwobasearchitecture.test.C;
-import me.martinez.sergio.daggertwobasearchitecture.test.D;
 
 /**
  * Created by Sergio Martinez Rodriguez
  * Date 15/7/15.
  */
-public class MainFragment extends BaseFragment<MainFragmentComponent> {
+public class MainFragment extends BaseFragment {
 
-  @Inject B b;
-  @Inject A a;
-  @Inject C c;
-  @Inject List<String> diInjectioHistoric;
+    @Inject B b;
+    @Inject A a;
+    @Inject C c;
 
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_main, container, false);
-  }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_main, container, false);
+    }
 
-  @Override public void onStart() {
-    super.onStart();
-    testDI();
-  }
+    @Override
+    public void onStart() {
+        super.onStart();
+        testDI();
+    }
 
-  private void testDI() {
-    diInjectioHistoric.add(MainFragment.class.getName());
-    diInjectioHistoric.add(b.toString());
-    diInjectioHistoric.add(a.toString());
-    diInjectioHistoric.add(c.toString());
-  }
+    private void testDI() {
 
-  //region dependency injection Methods
-  @Override protected void initDIComponent() {
-    fragmentComponent = (getParentComponent(MainActivityComponent.class)).plus(
-        new FragmentModule(this), new MainFragmentModule(this));
-    fragmentComponent.injectFragment(this);
-  }
+    }
 
-  public interface Pluser{
-    MainFragmentComponent plus(FragmentModule secondFragmentModule, MainFragmentModule baseFragmentModule);
-  }
-  //endregion
 }

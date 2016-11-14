@@ -23,27 +23,11 @@ import android.support.v4.app.Fragment;
  * Created by Sergio Martinez Rodriguez
  * Date 15/7/15.
  */
-public abstract class BaseFragment<T> extends Fragment {
+public abstract class BaseFragment extends Fragment {
 
-  protected T fragmentComponent;
-
-  @Override public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    initDIComponent();
-    setRetainInstance(true);
-  }
-
-  public T getFragmentComponent() {
-    return fragmentComponent;
-  }
-
-  protected abstract void initDIComponent();
-
-  /**
-   * Gets a component for dependency injection by its type.
-   */
-  protected <C> C getParentComponent(Class<C> componentType) {
-    return componentType.cast(((BaseInjectionActivity) getActivity()).getActivityComponent());
-  }
-
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+    
 }

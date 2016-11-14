@@ -17,12 +17,9 @@
 package me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base;
 
 import android.app.Application;
-import android.util.Log;
-import java.util.HashMap;
-import java.util.List;
+
 import javax.inject.Inject;
-import me.martinez.sergio.daggertwobasearchitecture.di.components.AppComponent;
-import me.martinez.sergio.daggertwobasearchitecture.di.components.DaggerAppComponent;
+
 import me.martinez.sergio.daggertwobasearchitecture.test.A;
 import me.martinez.sergio.daggertwobasearchitecture.utils.Log4Me;
 
@@ -32,47 +29,20 @@ import me.martinez.sergio.daggertwobasearchitecture.utils.Log4Me;
  */
 public class App extends Application {
 
-  @Inject A a;
-  @Inject Log4Me logger;
-  @Inject List<String> diContainer;
+    @Inject A a;
+    @Inject Log4Me logger;
 
-  private AppComponent appComponent;
-
-  @Override public void onCreate() {
-    super.onCreate();
-
-    initDI();
-    testDI();
-
-  }
-
-  private void initDI() {
-    appComponent = DaggerAppComponent.create();
-
-    /** DaggerAppComponent.create() is equivalent to :
-     * DaggerAppComponent.builder().appModule(new AppModule()).build()
-     * when module has not arguments
-     **/
-
-    appComponent.inject(this);
-  }
-
-  private void testDI() {
-
-    diContainer.add(App.class.getName());
-
-    if (logger != null ){
-      diContainer.add(logger.toString());
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        initDI();
+        testDI();
     }
 
-    if (a!=null){
-      logger.log("Dependency Injection is working");
-      diContainer.add(a.toString());
-
+    private void initDI() {
     }
-  }
 
-  public AppComponent getAppComponent() {
-    return appComponent;
-  }
+    private void testDI() {
+    }
+
 }

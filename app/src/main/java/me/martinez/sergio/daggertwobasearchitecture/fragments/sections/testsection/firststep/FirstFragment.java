@@ -21,37 +21,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import me.martinez.sergio.daggertwobasearchitecture.R;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseFragment;
-import me.martinez.sergio.daggertwobasearchitecture.di.modules.FragmentModule;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep.presentation
         .FirstFragmentPresenter;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep.presentation
         .FirstFragmentView;
 import me.martinez.sergio.daggertwobasearchitecture.test.A;
-import me.martinez.sergio.daggertwobasearchitecture.test.D;
-import me.martinez.sergio.daggertwobasearchitecture.test.E;
-import me.martinez.sergio.daggertwobasearchitecture.test.NotScopedProperty;
-import me.martinez.sergio.daggertwobasearchitecture.test.SectionProperty;
 
 /**
  * Created by Sergio Martinez Rodriguez
  * Date 15/7/15.
  */
-public class FirstFragment extends BaseFragment<FirstFragmentComponent> implements
+public class FirstFragment extends BaseFragment implements
         FirstFragmentView {
 
     @Inject A a;
-    @Inject E e;
-    @Inject D d;
-    @Inject List<String> diInjectionHistory;
     @Inject FirstFragmentPresenter firstFragmentPresenter;
-    @Inject SectionProperty sectionProperty;
-    @Inject NotScopedProperty notScopedProperty;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,23 +55,6 @@ public class FirstFragment extends BaseFragment<FirstFragmentComponent> implemen
     //region Test DI stuff
     private void testDI() {
 
-        diInjectionHistory.add(FirstFragment.class.getName());
-        diInjectionHistory.add(firstFragmentPresenter.toString());
-        diInjectionHistory.add(notScopedProperty.toString());
-        diInjectionHistory.add(sectionProperty.toString());
-        diInjectionHistory.add(a.toString());
-        diInjectionHistory.add(e.toString());
-        diInjectionHistory.add(d.toString());
-
-    }
-
-    @Override
-    protected void initDIComponent() {
-
-    }
-
-    public interface Pluser {
-        FirstFragmentComponent plus(FragmentModule fragmentModule, FirstFragmentModule firstFragmentModule);
     }
 
 }

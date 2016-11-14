@@ -1,5 +1,7 @@
 package me.martinez.sergio.daggertwobasearchitecture.diprovider.modules;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import me.martinez.sergio.daggertwobasearchitecture.test.A;
@@ -15,6 +17,7 @@ public class AppModule {
     }
 
     @Provides
+    @Singleton
     A provideA() {
         return new A();
     }

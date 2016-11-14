@@ -16,15 +16,12 @@
 
 package me.martinez.sergio.daggertwobasearchitecture.test;
 
-import javax.inject.Inject;
-
 /**
  * Created by Sergio Martinez Rodriguez
  * Date 15/7/15.
  */
 public class A {
 
-    @Inject
     public A() {
     }
 }

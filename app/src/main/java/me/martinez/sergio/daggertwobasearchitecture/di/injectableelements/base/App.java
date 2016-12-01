@@ -20,6 +20,8 @@ import android.app.Application;
 
 import javax.inject.Inject;
 
+import me.martinez.sergio.daggertwobasearchitecture.diprovider.components.AppComponent;
+import me.martinez.sergio.daggertwobasearchitecture.diprovider.components.DaggerAppComponent;
 import me.martinez.sergio.daggertwobasearchitecture.test.A;
 import me.martinez.sergio.daggertwobasearchitecture.utils.Log4Me;
 
@@ -31,6 +33,7 @@ public class App extends Application {
 
     @Inject A a;
     @Inject Log4Me logger;
+    private AppComponent appComponent;
 
     @Override
     public void onCreate() {
@@ -40,9 +43,16 @@ public class App extends Application {
     }
 
     private void initDI() {
+        appComponent = DaggerAppComponent
+                .create();
+        appComponent.inject(this);
     }
 
     private void testDI() {
+        logger.log("Hola Dagger 2, tengo una implementación de A: " + a);
     }
 
+    public AppComponent getAppComponent() {
+        return appComponent;
+    }
 }

@@ -17,6 +17,7 @@
 package me.martinez.sergio.daggertwobasearchitecture.utils;
 
 import android.util.Log;
+
 import javax.inject.Inject;
 
 /**
@@ -28,6 +29,7 @@ public class Log4MeImpl implements Log4Me {
   private int defaultLoglevel;
   private static final String LOGS_PREFIX = "DI TESTS :: ";
 
+  @Inject
   public Log4MeImpl() {
     defaultLoglevel = Log.DEBUG;
   }

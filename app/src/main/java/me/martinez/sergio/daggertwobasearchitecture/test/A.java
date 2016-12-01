@@ -20,4 +20,8 @@ package me.martinez.sergio.daggertwobasearchitecture.test;
  * Created by Sergio Martinez Rodriguez
  * Date 15/7/15.
  */
-public class A {}
+public class A {
+
+    public A() {
+    }
+}

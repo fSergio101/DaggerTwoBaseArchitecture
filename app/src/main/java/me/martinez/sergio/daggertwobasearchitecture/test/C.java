@@ -16,8 +16,14 @@
 
 package me.martinez.sergio.daggertwobasearchitecture.test;
 
+import javax.inject.Inject;
+
 /**
  * Created by Sergio Martinez Rodriguez
  * Date 15/7/15.
  */
-public class C {}
+public class C {
+    @Inject
+    public C() {
+    }
+}

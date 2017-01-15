@@ -17,12 +17,11 @@
 package me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base;
 
 import android.app.Application;
-import android.util.Log;
-import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
-import me.martinez.sergio.daggertwobasearchitecture.di.components.AppComponent;
-import me.martinez.sergio.daggertwobasearchitecture.di.components.DaggerAppComponent;
+
+import me.martinez.sergio.daggertwobasearchitecture.di.ComponentProxy;
+import me.martinez.sergio.daggertwobasearchitecture.di.ComponentProxyProd;
 import me.martinez.sergio.daggertwobasearchitecture.test.A;
 import me.martinez.sergio.daggertwobasearchitecture.utils.Log4Me;
 
@@ -36,8 +35,6 @@ public class App extends Application {
   @Inject Log4Me logger;
   @Inject List<String> diContainer;
 
-  private AppComponent appComponent;
-
   @Override public void onCreate() {
     super.onCreate();
 
@@ -47,14 +44,11 @@ public class App extends Application {
   }
 
   private void initDI() {
-    appComponent = DaggerAppComponent.create();
+    getComponentProxy().getAppComponent().inject(this);
+  }
 
-    /** DaggerAppComponent.create() is equivalent to :
-     * DaggerAppComponent.builder().appModule(new AppModule()).build()
-     * when module has not arguments
-     **/
-
-    appComponent.inject(this);
+  public ComponentProxy getComponentProxy() {
+    return ComponentProxyProd.getInstance();
   }
 
   private void testDI() {
@@ -70,9 +64,5 @@ public class App extends Application {
       diContainer.add(a.toString());
 
     }
-  }
-
-  public AppComponent getAppComponent() {
-    return appComponent;
   }
 }

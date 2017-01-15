@@ -14,28 +14,18 @@
  *  limitations under the License.
  */
 
-package me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base;
+package me.martinez.sergio.daggertwobasearchitecture.di.components;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import javax.inject.Provider;
+import javax.inject.Singleton;
 
-/**
- * Created by Sergio Martinez Rodriguez
- * Date 15/7/15.
- */
-public abstract class BaseInjectionActivity<T> extends AppCompatActivity{
+import dagger.Component;
+import me.martinez.sergio.daggertwobasearchitecture.activities.MainActivityComponentProd;
+import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.App;
+import me.martinez.sergio.daggertwobasearchitecture.di.modules.AppModule;
 
-  protected T activityComponent;
-
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    activityComponent = initDI();
-  }
-
-  protected abstract T initDI();
-
-  public T getActivityComponent() {
-      return activityComponent;
-  }
-
+@Singleton
+@Component(modules = AppModule.class)
+public interface AppComponentProd extends AppComponent {
+    Provider<MainActivityComponentProd.Builder> mainActivityComponentProdBuilderProvider();
 }

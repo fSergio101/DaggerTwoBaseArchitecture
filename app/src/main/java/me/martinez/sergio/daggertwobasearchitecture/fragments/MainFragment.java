@@ -17,20 +17,21 @@
 package me.martinez.sergio.daggertwobasearchitecture.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
 import me.martinez.sergio.daggertwobasearchitecture.R;
-import me.martinez.sergio.daggertwobasearchitecture.activities.MainActivityComponent;
+import me.martinez.sergio.daggertwobasearchitecture.activities.MainActivity;
+import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.App;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseFragment;
-import me.martinez.sergio.daggertwobasearchitecture.di.modules.FragmentModule;
 import me.martinez.sergio.daggertwobasearchitecture.test.A;
 import me.martinez.sergio.daggertwobasearchitecture.test.B;
 import me.martinez.sergio.daggertwobasearchitecture.test.C;
-import me.martinez.sergio.daggertwobasearchitecture.test.D;
 
 /**
  * Created by Sergio Martinez Rodriguez
@@ -60,15 +61,8 @@ public class MainFragment extends BaseFragment<MainFragmentComponent> {
     diInjectioHistoric.add(c.toString());
   }
 
-  //region dependency injection Methods
   @Override protected void initDIComponent() {
-    fragmentComponent = (getParentComponent(MainActivityComponent.class)).plus(
-        new FragmentModule(this), new MainFragmentModule(this));
+    fragmentComponent = ((App) getActivity().getApplication()).getComponentProxy().getMainFragmentComponent((MainActivity) getActivity(), this);
     fragmentComponent.injectFragment(this);
   }
-
-  public interface Pluser{
-    MainFragmentComponent plus(FragmentModule secondFragmentModule, MainFragmentModule baseFragmentModule);
-  }
-  //endregion
 }

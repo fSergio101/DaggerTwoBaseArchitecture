@@ -16,11 +16,6 @@
 
 package me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep;
 
-/**
- * Created by Sergio Martinez Rodriguez
- * Date 15/7/15.
- */
-
 import dagger.Subcomponent;
 import me.martinez.sergio.daggertwobasearchitecture.di.anotations.scopes.PerFragment;
 import me.martinez.sergio.daggertwobasearchitecture.di.modules.FragmentModule;
@@ -29,4 +24,10 @@ import me.martinez.sergio.daggertwobasearchitecture.di.modules.FragmentModule;
 @Subcomponent( modules = {FragmentModule.class, FirstFragmentModule.class})
 public interface FirstFragmentComponent {
     void injectFragment(FirstFragment firstFragment);
+    @Subcomponent.Builder
+    interface Builder {
+        Builder firstFragmentComponent(FirstFragmentModule firstFragmentModule);
+        Builder fragmentModule(FragmentModule fragmentModule);
+        FirstFragmentComponent build();
+    }
 }

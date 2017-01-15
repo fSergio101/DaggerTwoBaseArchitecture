@@ -16,17 +16,23 @@
 
 package me.martinez.sergio.daggertwobasearchitecture.activities;
 
-import dagger.Module;
+import javax.inject.Provider;
+
+import dagger.Subcomponent;
 import me.martinez.sergio.daggertwobasearchitecture.di.components.SectionComponent;
+import me.martinez.sergio.daggertwobasearchitecture.di.modules.ActivityModule;
+import me.martinez.sergio.daggertwobasearchitecture.di.anotations.scopes.PerActivity;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.MainFragmentComponent;
 
-@Module(subcomponents = {SectionComponent.class, MainFragmentComponent.class })
-public class MainActivityModule{
-
-  private MainActivity mainActivity;
-
-  public MainActivityModule(MainActivity mainActivity) {
-    this.mainActivity = mainActivity;
-  }
-
+@PerActivity
+@Subcomponent(modules = {ActivityModule.class, MainActivityModule.class})
+public interface MainActivityComponentProd extends MainActivityComponent {
+    Provider<MainFragmentComponent.Builder> mainFragmentComponentBuilderProvider();
+    Provider<SectionComponent.Builder> sectionComponentProdBuilderProvider();
+    @Subcomponent.Builder
+    interface Builder {
+        Builder mainActivityComponentProd(MainActivityModule mainActivityModule);
+        Builder activityModule(ActivityModule activityModule);
+        MainActivityComponentProd build();
+    }
 }

@@ -19,15 +19,9 @@ package me.martinez.sergio.daggertwobasearchitecture.di.modules;
 import dagger.Module;
 import dagger.Provides;
 import me.martinez.sergio.daggertwobasearchitecture.di.anotations.scopes.PerActivity;
-import me.martinez.sergio.daggertwobasearchitecture.di.anotations.scopes.PerSection;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseInjectionActivity;
 import me.martinez.sergio.daggertwobasearchitecture.test.B;
-import me.martinez.sergio.daggertwobasearchitecture.test.SectionProperty;
 
-/**
- * Created by Sergio Martinez Rodriguez
- * Date 15/7/15.
- */
 @Module
 public class ActivityModule {
 

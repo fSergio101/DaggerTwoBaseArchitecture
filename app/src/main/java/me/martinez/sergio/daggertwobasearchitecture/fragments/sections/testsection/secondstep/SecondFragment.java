@@ -17,16 +17,19 @@
 package me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.secondstep;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
 import me.martinez.sergio.daggertwobasearchitecture.R;
-import me.martinez.sergio.daggertwobasearchitecture.di.components.SectionComponentMain;
+import me.martinez.sergio.daggertwobasearchitecture.activities.MainActivity;
+import me.martinez.sergio.daggertwobasearchitecture.activities.Section;
+import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.App;
 import me.martinez.sergio.daggertwobasearchitecture.di.injectableelements.base.BaseFragment;
-import me.martinez.sergio.daggertwobasearchitecture.di.modules.FragmentModule;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.secondstep.presentation.SecondFragmentPresenter;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.secondstep.presentation.SecondFragmentView;
 import me.martinez.sergio.daggertwobasearchitecture.test.D;
@@ -72,18 +75,11 @@ public class SecondFragment extends BaseFragment<SecondFragmentComponent> implem
     diInjectionHistory.add(d.toString());
 
     logger.log(diInjectionHistory.toString());
-
-
   }
 
   @Override protected void initDIComponent() {
-    fragmentComponent = (getParentComponent(SectionComponentMain.class)).plus(
-        new FragmentModule(this), new SecondFragmentModule(this));
+    fragmentComponent = ((App) getActivity().getApplication()).getComponentProxy().getSecondFragmentComponent((MainActivity) getActivity(), this);
     fragmentComponent.injectFragment(this);
-  }
-
-  public interface Pluser{
-    SecondFragmentComponent plus(FragmentModule secondFragmentModule, SecondFragmentModule firstFragmentModule);
   }
 
 }

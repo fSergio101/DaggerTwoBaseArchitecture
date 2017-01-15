@@ -18,19 +18,18 @@ package me.martinez.sergio.daggertwobasearchitecture.di.modules;
 
 import dagger.Module;
 import dagger.Provides;
+import me.martinez.sergio.daggertwobasearchitecture.activities.MainActivityComponentProd;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Singleton;
 
-/**
- * Created by Sergio Martinez Rodriguez
- * Date 15/7/15.
- */
-@Module(includes = IncludedModule.class)
+@Module(includes = IncludedModule.class, subcomponents = MainActivityComponentProd.class)
 public class AppModule {
 
-  @Singleton @Provides List<String> provideDiInjectionHistory(){
+    @Singleton
+    @Provides
+    List<String> provideDiInjectionHistory(){
     return new ArrayList<>();
   }
-
 }

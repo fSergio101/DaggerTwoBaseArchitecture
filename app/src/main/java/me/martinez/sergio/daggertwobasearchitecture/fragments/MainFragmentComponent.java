@@ -22,6 +22,7 @@ package me.martinez.sergio.daggertwobasearchitecture.fragments;
  */
 
 import dagger.Subcomponent;
+import me.martinez.sergio.daggertwobasearchitecture.activities.MainActivityModule;
 import me.martinez.sergio.daggertwobasearchitecture.di.anotations.scopes.PerFragment;
 import me.martinez.sergio.daggertwobasearchitecture.di.modules.FragmentModule;
 import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsection.firststep.FirstFragment;
@@ -33,4 +34,10 @@ import me.martinez.sergio.daggertwobasearchitecture.fragments.sections.testsecti
 @Subcomponent( modules = {FragmentModule.class, MainFragmentModule.class})
 public interface MainFragmentComponent{
     void injectFragment(MainFragment mainFragment);
+    @Subcomponent.Builder
+    interface Builder {
+        Builder mainFragmentComponent(MainFragmentModule mainFragmentModule);
+        Builder fragmentModule(FragmentModule fragmentModule);
+        MainFragmentComponent build();
+    }
 }
